@@ -15,7 +15,7 @@ def ask_for_guess():
         valid_list = file.read()
         valid_words = valid_list.split()
     if guess not in valid_words:
-        raise ValueError("Your guess must be a valid 5 letter word")
+        return False
     return guess
 
 def compare_input_to_solution(guess, solution):
@@ -31,10 +31,6 @@ def compare_input_to_solution(guess, solution):
             response[i] = 0.5
     return response
 
-
-
-
-
 def check_for_win(guess, solution):
     if guess == solution:
         return True
@@ -45,11 +41,16 @@ def check_for_win(guess, solution):
 def main_game():
     solution = get_solution()
     Win = False
-    for i in range(6):
+    guess_number = 0
+    while guess_number < 6:
         guess = ask_for_guess()
-        #TODO: Fail gracefully if word is invalid
+        if guess == False:
+            print("Invalid Guess")
+            continue
+        guess_number = guess_number + 1
         response = compare_input_to_solution(guess, solution)
         print(response)
+        #TODO: print remaining letters
         if check_for_win(guess, solution):
             Win = True
             print("You Win!")
