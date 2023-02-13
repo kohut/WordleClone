@@ -1,6 +1,5 @@
 import numpy as np
 
-
 # Get the solution to the puzzle
 def get_solution():
     with open("solutions.txt", "r") as file:
@@ -23,7 +22,6 @@ def compare_input_to_solution(guess, solution):
     solution_letters = ([*solution])
     response = [0, 0, 0, 0, 0]
     for i in range(len(guess_letters)):
-        #just doing green letters for now
         if guess_letters[i] == solution_letters[i]:
             response[i] = 1
         #TODO: Handle double letters
@@ -56,7 +54,7 @@ def main_game():
             print("You Win!")
             break
     if Win is False:
-        print("You Lose.")
+        print("You Lose. The solution was " + solution)
     print("The Game has ended")
 
 main_game()
